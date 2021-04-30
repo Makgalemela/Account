@@ -1,6 +1,7 @@
 package com.matome.accounts.model;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
@@ -11,7 +12,6 @@ import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
-import java.util.Objects;
 
 
 @Entity
@@ -22,14 +22,18 @@ public class Bill {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private Long id;
-
     @Type(type="date")
-    private String billDate;
+    @JsonFormat( pattern = "yyyy-MM-dd",shape = JsonFormat.Shape.STRING)
+    private Date billDate;
     private BigDecimal charges;
     private BigDecimal outstanding;
     @Type(type="date")
+    @JsonFormat(pattern = "yyyy-MM-dd",shape = JsonFormat.Shape.STRING)
     private Date dueDate;
     private BigInteger accountNumber;
+    @Type(type="date")
+    @JsonFormat(pattern = "yyyy-MM",shape = JsonFormat.Shape.STRING)
+    private Date period;
 
 
     public Long getId() {
@@ -40,11 +44,27 @@ public class Bill {
         this.id = id;
     }
 
-    public String getBillDate() {
+    public BigInteger getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(BigInteger accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public Date getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(Date period) {
+        this.period = period;
+    }
+
+    public Date getBillDate() {
         return billDate;
     }
 
-    public void setBillDate(String billDate) {
+    public void setBillDate(Date billDate) {
         this.billDate = billDate;
     }
 

@@ -1,8 +1,6 @@
 package com.matome.accounts.model;
 
 
-import com.matome.accounts.payload.AccountHolderDetails;
-import com.matome.accounts.payload.Bills;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,10 +10,13 @@ import java.math.BigInteger;
 @Entity
 public class Account {
 
+
     @Id
     private BigInteger accountNumber;
     private String accountHolderName;
     private BigInteger accountHolderIDNumber;
+
+
 
     public BigInteger getAccountNumber() {
         return accountNumber;
@@ -39,6 +40,15 @@ public class Account {
 
     public void setAccountHolderIDNumber(BigInteger accountHolderIDNumber) {
         this.accountHolderIDNumber = accountHolderIDNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "accountNumber=" + accountNumber +
+                ", accountHolderName='" + accountHolderName + '\'' +
+                ", accountHolderIDNumber=" + accountHolderIDNumber +
+                '}';
     }
 }
 

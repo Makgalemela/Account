@@ -11,7 +11,7 @@ import java.util.Objects;
 
 
 @Entity
-public class ContactDetail {
+public class  ContactDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
