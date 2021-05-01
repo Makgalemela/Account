@@ -41,7 +41,7 @@ public class ContactDetailService {
                 return ResponseHandler.generateResponse(HttpStatus.CREATED, true, "Successful");
             }
             else{
-                return ResponseHandler.generateResponse(HttpStatus.BAD_GATEWAY, false, "unSuccessful");
+                return ResponseHandler.generateResponse(HttpStatus.BAD_REQUEST, false, "unSuccessful");
             }
         } catch (JsonProcessingException e) {
             return ResponseHandler.generateResponse(HttpStatus.INTERNAL_SERVER_ERROR, false, "unSuccessful");
@@ -59,7 +59,7 @@ public class ContactDetailService {
                 contactDetailRepository.save(contactDetail);
                 return ResponseHandler.generateResponse(HttpStatus.OK, true, "Successful");
             }else{
-                return ResponseHandler.generateResponse(HttpStatus.NOT_FOUND, false, "unSuccessful");
+                return ResponseHandler.generateResponse(HttpStatus.BAD_REQUEST, false, "unSuccessful");
             }
 
         } catch (JsonProcessingException e) {

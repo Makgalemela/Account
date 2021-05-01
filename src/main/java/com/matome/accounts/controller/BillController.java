@@ -20,7 +20,7 @@ public class BillController {
     BillService billService;
 
     @GetMapping(ACCOUNTBILLS)
-    public ResponseEntity<Object> findAccountDetailsByAccountNumber(@PathVariable(value = "accountNumber") BigInteger accountNumber){
+    public ResponseEntity<Object> findAccountBillsByAccountNumber(@RequestParam(value = "accountNumber") BigInteger accountNumber){
         return  billService.findAccountBillsByAccountNumber(accountNumber);
     }
 
