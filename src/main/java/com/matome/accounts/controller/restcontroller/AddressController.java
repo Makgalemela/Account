@@ -1,4 +1,4 @@
-package com.matome.accounts.controller;
+package com.matome.accounts.controller.restcontroller;
 
 
 import com.matome.accounts.dto.AddressDTO;
