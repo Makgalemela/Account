@@ -20,8 +20,8 @@ public class JsfConfigurations extends SpringBootServletInitializer {
 //        FacesServlet servlet = new FacesServlet();
 //        return new ServletRegistrationBean(servlet, "*.jsf");
 //    }
-//
-//
+
+
 //    @Bean
 //    public FilterRegistrationBean rewriteFilter() {
 //        FilterRegistrationBean rwFilter = new FilterRegistrationBean(new RewriteFilter());

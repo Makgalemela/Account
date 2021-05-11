@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class PLMFacesServlet extends HttpServlet implements DelegatedFacesServlet {
+public class FacesServletDelegator extends HttpServlet implements DelegatedFacesServlet {
 
     private MyFacesServlet delegate;
 
