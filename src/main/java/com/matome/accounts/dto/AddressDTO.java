@@ -1,7 +1,9 @@
 package com.matome.accounts.dto;
-
 import java.math.BigDecimal;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.SessionScope;
 
+@Component
 public class AddressDTO {
     public AddressDTO(String line1, String line2, String line3, String postalCode, Boolean isActive, String accountNumber) {
         this.line1 = line1;

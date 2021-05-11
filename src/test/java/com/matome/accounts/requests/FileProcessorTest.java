@@ -18,7 +18,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class FileProcessorTest {
 
-
     @Autowired
     private MockMvc mockMvc;
 

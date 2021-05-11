@@ -1,7 +1,11 @@
 package com.matome.accounts.dto;
 
 import java.math.BigDecimal;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.SessionScope;
 
+@Component
+@SessionScope
 public class AccountDTO {
 
     public AccountDTO(String accountNumber, String accountHolderName, String accountHolderIDNumber) {
