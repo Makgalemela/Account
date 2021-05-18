@@ -6,15 +6,17 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui">
 <ui:composition template="layout.xhtml">
     <ui:define name="content">
-            <p:panel header="Upload Account Details">
+            <p:panel header="Account Summary">
                 <h:panelGrid columns="1">
-                    <h:form  id="uploadForm" prependid="false" enctype="multipart/form-data">
-                        <h:inputFile value="#{uploadfileController.uploadedFile}"></h:inputFile>
-                        <h:commandButton value="Upload" action="#{uploadfileController.processFiles}"></h:commandButton>
+                    <h:form id="summaryView">
+<!--                    <p:outputLabel for="name" value="Name: " />-->
+<!--                    <p:inputText id="name" value="#{productController.product.name}" />-->
+<!--                    <p:outputLabel for="price" value="Price: " />-->
+<!--                    <p:inputNumber id="price" value="#{productController.product.price}" />-->
+<!--                    <h:commandButton value="Save" action="#{productController.save}" />-->
                     </h:form>
                 </h:panelGrid>
             </p:panel>
     </ui:define>
 </ui:composition>
 </html>
-

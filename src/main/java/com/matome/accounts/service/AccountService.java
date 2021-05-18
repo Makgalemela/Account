@@ -1,7 +1,8 @@
 package com.matome.accounts.service;
 
-
+import org.json.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.matome.accounts.dto.AccountDTO;
 import com.matome.accounts.model.Account;
@@ -14,6 +15,8 @@ import com.matome.accounts.repository.AddressRepository;
 import com.matome.accounts.repository.BillRepository;
 import com.matome.accounts.repository.ContactDetailRepository;
 import com.matome.accounts.utils.ResponseHandler;
+import com.sun.xml.bind.api.TypeReference;
+import org.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +27,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class AccountService {
@@ -65,45 +66,46 @@ public class AccountService {
     }
 
     public ResponseEntity<Object> findAccountDetailsByAccountNumber(BigInteger accountNumber) {
-
-        Optional<Account> account = accountRepository.findByAccountNumber(accountNumber);
-        if (account.isPresent()) {
-            List<Bill> bills = billRepository.findByAccountNumber(accountNumber);
-            ContactDetail contactDetail = contactDetailRepository.findByAccountNumber(accountNumber);
-            Address address = addressRepository.findByAccountNumber(accountNumber);
-            AccountSummaryResponse accountSummaryResponse = new AccountSummaryResponse(
-                    account.get(),
-                    address,
-                    contactDetail,
-                    bills
-            );
+        AccountSummaryResponse accountSummaryResponse = getAccountByAccountNumber(accountNumber);
+        if (Objects.nonNull(accountSummaryResponse)) {
             return ResponseHandler.generateResponse(HttpStatus.OK, true, "Successful", accountSummaryResponse);
         } else {
             return ResponseHandler.generateResponse(HttpStatus.NOT_FOUND, false, "unSuccessful");
         }
     }
 
-    public ResponseEntity<Object> findAllAccountDetails() {
+    public ResponseEntity<Object> findAllAccountDetails() throws JSONException {
+
         List<Account> accounts = accountRepository.findAll();
         if (!accounts.isEmpty()) {
             List<AccountSummaryResponse> accountSummaryResponses = new ArrayList<>();
             accounts.stream().forEach(account -> {
-                ResponseEntity accountSummaryResponseEntity = findAccountDetailsByAccountNumber(account.getAccountNumber());
-                try {
-                    JSONObject accountSummaryResponseInstance = new JSONObject(accountSummaryResponseEntity.toString()).getJSONObject("body");
-                    Object data = accountSummaryResponseInstance.get("data");
-                    ObjectMapper objectMapper = new ObjectMapper();
-                    String jsonObj = objectMapper.writeValueAsString(data.toString());
-                    AccountSummaryResponse accountSummaryResponse = objectMapper.readValue(jsonObj, AccountSummaryResponse.class);
-                    accountSummaryResponses.add(accountSummaryResponse);
-
-                } catch (JSONException | JsonProcessingException e) { }
+                AccountSummaryResponse accountSummaryEntity = getAccountByAccountNumber(account.getAccountNumber());
+                accountSummaryResponses.add(accountSummaryEntity);
             });
             return ResponseHandler.generateResponse(HttpStatus.OK, true, "Successful", accountSummaryResponses);
         } else {
             return ResponseHandler.generateResponse(HttpStatus.OK, true, "Successful", accounts);
         }
+    }
 
+
+    private AccountSummaryResponse getAccountByAccountNumber(BigInteger accountNumber){
+        Optional<Account> account = accountRepository.findByAccountNumber(accountNumber);
+        AccountSummaryResponse accountSummaryResponse = null;
+
+        if (account.isPresent()) {
+            List<Bill> bills = billRepository.findByAccountNumber(accountNumber);
+            ContactDetail contactDetail = contactDetailRepository.findByAccountNumber(accountNumber);
+            Address address = addressRepository.findByAccountNumber(accountNumber);
+           accountSummaryResponse = new AccountSummaryResponse(
+                    account.get(),
+                    address,
+                    contactDetail,
+                    bills
+            );
+        }
+        return  accountSummaryResponse;
     }
 
 }

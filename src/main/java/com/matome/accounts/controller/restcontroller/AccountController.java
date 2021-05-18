@@ -3,6 +3,7 @@ package com.matome.accounts.controller.restcontroller;
 
 import com.matome.accounts.dto.AccountDTO;
 import com.matome.accounts.service.AccountService;
+import org.json.JSONException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class AccountController {
     }
 
     @GetMapping(ALLACCOUNTS)
-    public  ResponseEntity<Object> findAllAccountSummaries(){
+    public  ResponseEntity<Object> findAllAccountSummaries() throws JSONException {
         return  accountService.findAllAccountDetails();
     }
 
