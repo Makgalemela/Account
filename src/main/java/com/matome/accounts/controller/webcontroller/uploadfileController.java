@@ -41,16 +41,11 @@ public class uploadfileController {
     FileProcessor fileProcessor;
 
 
-//    public String processFiles() throws ParserConfigurationException, SAXException, IOException {
-////        fileProcessor.fileUpload((MultipartFile) uploadedFile);
-////        return "/summary-view?faces-redirect=true";
-//    }
-
-    public  String processFiles(){
-
-//        log.info("Power house");
-//        logger.info("Simple log statement with inputs {}, {} and {}", 1, 2, 3);
+    public String processFiles() throws ParserConfigurationException, SAXException, IOException {
+        fileProcessor.fileUpload((MultipartFile) uploadedFile);
         return "/summary-view?faces-redirect=true";
     }
+
+
 
 }

@@ -49,46 +49,16 @@ public class accountSummaryController {
     @RequestAction
     @IgnorePostback
     public  void loadAccountSummary() throws Exception {
-
+        summaryResponses.clear();
         ResponseEntity<Object> response  =  accountController.findAllAccountSummaries();
         JSONObject accountSummaryResponseInstance = new JSONObject(response).getJSONObject("body");
         Object data = accountSummaryResponseInstance.get("data");
         JSONArray array = new JSONArray(data.toString());
         for(int itr = 0; itr < array.length() ; itr++){
             ObjectMapper objectMapper = new ObjectMapper();
-            String JsonObj = objectMapper.writeValueAsString(array.get(itr).toString());
-
-
             AccountSummaryResponse summaryResponse = objectMapper.readValue(array.get(itr).toString() ,AccountSummaryResponse.class);
-            logger.info("Res --> "+summaryResponse.toString());
-//            summaryResponses.add(summaryResponse);
+            summaryResponses.add(summaryResponse);
         }
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        objectMapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
-//        String jsonStr = objectMapper.writeValueAsString(array.toString());
-//        logger.info("Here now -- > "+jsonStr);
-//        List<AccountSummaryResponse> accountSummaryList = objectMapper.readValue(jsonStr, new TypeReference<List<AccountSummaryResponse>>(){});
-//        logger.info(" "+accountSummaryList);
-
-//        accountSummaryList.stream().forEach(x->{
-//            logger.info("This data --> " +x.getAccount().toString() );
-//        });
-
-//        logger.info(response.toString());
-//        JSONObject accountSummaryResponseInstance = new JSONObject(response.toString()).getJSONObject("body");
-//
-//        Object data = accountSummaryResponseInstance.get("data");
-//
-//        logger.info("Rest now "+ data.toString());
-
-//        JSONArray array = new JSONArray(data.toString());
-//
-//        for(int i = 0 ; i < array.length() ; i++){
-//            ObjectMapper objectMapper = new ObjectMapper();
-//            String jsonObj = objectMapper.writeValueAsString(array.get(i).toString());
-//            AccountSummaryResponse accountSummaryResponse = objectMapper.readValue(jsonObj, AccountSummaryResponse.class);
-//            summaryResponses.add(accountSummaryResponse);
-//        }
 
     }
 

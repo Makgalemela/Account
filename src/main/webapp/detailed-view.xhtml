@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="layout.xhtml">
+    <ui:define name="content">
+        <h:form id="detailedView">
+            <p:panel header="Account Summary | Account">
+                <p:panelGrid columns="1">
+
+<!--                    <p:dataTable id="summaryTable" var="account" value="#{DetailedSummaryController.summaryResponse}">-->
+<!--                        <p:column>-->
+<!--                            <f:facet name="header"># Account Holder Name</f:facet>-->
+<!--                            <h:outputText value="#{account.account.accountHolderName}"/>-->
+<!--                        </p:column>-->
+<!--                        <p:column>-->
+<!--                            <f:facet name="header"># Account Number</f:facet>-->
+<!--                            <h:outputText value="#{account.account.accountNumber}"/>-->
+<!--                        </p:column>-->
+<!--                        <p:column>-->
+<!--                            <f:facet name="header"># Account Holder Id</f:facet>-->
+<!--                            <h:outputText value="#{account.account.accountHolderIDNumber}"/>-->
+<!--                        </p:column>-->
+
+<!--                    </p:dataTable>-->
+                </p:panelGrid>
+            </p:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>
