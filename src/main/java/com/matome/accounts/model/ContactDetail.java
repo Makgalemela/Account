@@ -62,5 +62,14 @@ public class  ContactDetail {
         this.accountNumber = accountNumber;
     }
 
-
+    @Override
+    public String toString() {
+        return "ContactDetail{" +
+                "id=" + id +
+                ", mobile=" + mobile +
+                ", home='" + home + '\'' +
+                ", work='" + work + '\'' +
+                ", accountNumber=" + accountNumber +
+                '}';
+    }
 }

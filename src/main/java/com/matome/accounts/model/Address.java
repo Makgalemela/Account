@@ -81,4 +81,17 @@ public class Address {
     public void setAccountNumber(BigInteger accountNumber) {
         this.accountNumber = accountNumber;
     }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", line1='" + line1 + '\'' +
+                ", line2='" + line2 + '\'' +
+                ", line3='" + line3 + '\'' +
+                ", postalCode=" + postalCode +
+                ", isActive=" + isActive +
+                ", accountNumber=" + accountNumber +
+                '}';
+    }
 }

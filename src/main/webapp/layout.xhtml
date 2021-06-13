@@ -4,6 +4,22 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" />
+    <h:outputStylesheet library="css" name="bootstrap.min.css" />
+    <title>Matome</title>
+    <style type="text/css">
+        .col-xs-updated {
+            width: 92% !important;
+        }
+        .navbar-inverse{
+            background-color: #001;
+            height: 90px;
+        }
+    </style>
+</h:head>
 <f:view>
     <h:head>
         <meta charset="utf-8"/>
@@ -12,19 +28,29 @@
         <title>Account Managements</title>
     </h:head>
     <h:body>
-        <div class="ui-g">
-            <div class="ui-g-12">
-                <p:toolbar>
-                    <f:facet name="left">
-                        <p:button href="/summary-view" value="Accounts Summary"/>
-                        <p:button href="/upload-file" value="Upload Data"/>
-                    </f:facet>
-                </p:toolbar>
-            </div>
-            <div class="ui-g-12">
+
+        <div>
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">Matome</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <h:button  class="btn btn-primary"  href="/upload-file" value="Upload Data"/>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
                 <ui:insert name="content"/>
             </div>
         </div>
+
     </h:body>
 </f:view>
 </html>

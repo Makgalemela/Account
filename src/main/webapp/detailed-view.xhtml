@@ -5,29 +5,35 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-
       xmlns:p="http://primefaces.org/ui">
+
+
+
 <ui:composition template="layout.xhtml">
     <ui:define name="content">
         <h:form id="detailedView">
             <p:panel header="Account Summary | Account">
-                <p:panelGrid columns="1">
+                <p:panelGrid columns="2"
+                             columnClasses="p-col-12 p-md-3 p-xl-2, p-col-12 p-md-9 p-xl-4, p-col-12 p-md-3 p-xl-2, p-col-12 p-md-9 p-xl-4"
+                             contentStyleClass="p-align-baseline ui-fluid">
+                    <p:outputLabel for="text1" value="Account Holder Name"/>
+                    <p:outputLabel id="text1"
+                                   value="#{DetailedSummaryController.summaryResponse.account.accountHolderName}"/>
+                    <p:outputLabel for="text2" value="Account Holder Id"/>
+                    <p:outputLabel id="text2"
+                                   value="#{DetailedSummaryController.summaryResponse.account.accountHolderIDNumber}"/>
+                    <p:outputLabel for="text3" value="Account Number"/>
+                    <p:outputLabel id="text3"
+                                   value="#{DetailedSummaryController.summaryResponse.account.accountNumber}"/>
 
-<!--                    <p:dataTable id="summaryTable" var="account" value="#{DetailedSummaryController.summaryResponse}">-->
-<!--                        <p:column>-->
-<!--                            <f:facet name="header"># Account Holder Name</f:facet>-->
-<!--                            <h:outputText value="#{account.account.accountHolderName}"/>-->
-<!--                        </p:column>-->
-<!--                        <p:column>-->
-<!--                            <f:facet name="header"># Account Number</f:facet>-->
-<!--                            <h:outputText value="#{account.account.accountNumber}"/>-->
-<!--                        </p:column>-->
-<!--                        <p:column>-->
-<!--                            <f:facet name="header"># Account Holder Id</f:facet>-->
-<!--                            <h:outputText value="#{account.account.accountHolderIDNumber}"/>-->
-<!--                        </p:column>-->
+                    <!--                    <p:commandButton value="Edit Account"-->
+                    <!--                                     action="#{EditAccountController.getAccountAddressAndContact(DetailedSummaryController.summaryResponse.account.accountNumber)}">-->
+                    <!--                    </p:commandButton>-->
 
-<!--                    </p:dataTable>-->
+                    <h:commandButton value="Edit Accounts"
+                                     action="#{EditAccountController.getAccountAddressAndContact(DetailedSummaryController.summaryResponse.account.accountNumber)}">
+                    </h:commandButton>
+
                 </p:panelGrid>
             </p:panel>
         </h:form>

@@ -1,6 +1,8 @@
 package com.matome.accounts.controller.webcontroller;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.matome.accounts.controller.restcontroller.AccountController;
 import com.matome.accounts.payload.AccountSummaryResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -32,17 +34,18 @@ public class DetailedSummaryController {
 
     private AccountSummaryResponse summaryResponse = null;
 
-    public String accountDetailedSummary(BigInteger accountNumber){
+    public String accountDetailedSummary(BigInteger accountNumber) throws JsonProcessingException {
         loadAccountSummary(accountNumber);
         return "/detailed-view?faces-redirect=true";
     }
 
-    private   void  loadAccountSummary(BigInteger accountNumber){
+    private   void  loadAccountSummary(BigInteger accountNumber) throws JsonProcessingException {
         ResponseEntity<Object> accountSummary =  accountController.findAccountSummaryByAccountNumber(accountNumber);
         ResponseEntity<Object> response  =  accountController.findAllAccountSummaries();
         JSONObject accountSummaryResponseInstance = new JSONObject(accountSummary).getJSONObject("body");
         Object data = accountSummaryResponseInstance.get("data");
-        logger.info("Data ==> "+data);
+        ObjectMapper objectMapper = new ObjectMapper();
+        summaryResponse = objectMapper.readValue(data.toString(),  AccountSummaryResponse.class);
 
     }
 

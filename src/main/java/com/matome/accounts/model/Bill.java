@@ -92,5 +92,16 @@ public class Bill {
         this.dueDate = dueDate;
     }
 
-
+    @Override
+    public String toString() {
+        return "Bill{" +
+                "id=" + id +
+                ", billDate=" + billDate +
+                ", charges=" + charges +
+                ", outstanding=" + outstanding +
+                ", dueDate=" + dueDate +
+                ", accountNumber=" + accountNumber +
+                ", period=" + period +
+                '}';
+    }
 }

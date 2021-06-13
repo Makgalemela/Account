@@ -7,6 +7,17 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
 
       xmlns:p="http://primefaces.org/ui">
+<h:outputStylesheet library="css" name="bootstrap.min.css" />
+<h:head>
+    <style type="text/css">
+        .richButton  {
+            margin: 5px;
+            padding: 5px 5px 5px 20px; /* 20px makes room for your background image */
+            border: 1px solid #aaa;
+            background-color: red !important;
+        }
+    </style>
+</h:head>
 <ui:composition template="layout.xhtml">
     <ui:define name="content">
         <h:form id="summaryView">
@@ -28,10 +39,13 @@
                         </p:column>
 
                         <p:column>
-                            <f:facet name="header">Detailed View</f:facet>
-                            <h:commandButton value="Detailed View" action="#{DetailedSummaryController.accountDetailedSummary(account.account.accountNumber)}">
-                            </h:commandButton>
-
+                            <f:facet name="header" >Detailed View</f:facet>
+                            <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <h:commandButton type="submit"  styleClass="richButton" value="Detailed View" action="#{DetailedSummaryController.accountDetailedSummary(account.account.accountNumber)}">
+                                </h:commandButton>
+                            </div>
+                            </div>
                         </p:column>
 
                     </p:dataTable>
